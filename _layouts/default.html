@@ -27,8 +27,7 @@ repository: ScottLogic/new-blog
     <meta property="og:description" content="{{ page.summary | escape }}"/>
 
     {% if page.image %}
-        {% assign appendUrl = page.image | prepend: '/' | replace : '//', '/' %}
-        {% assign thumbnailImage = site.canonical.url | append: appendUrl %}
+        {% assign thumbnailImage = page.image | prepend: '/' | replace : '//', '/' | prepend: site.canonical.url %}
     {% else %}
         {% assign thumbnailImage = site.canonical.url | append: '/assets/blog.png' %}
     {% endif %}
