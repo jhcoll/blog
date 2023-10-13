@@ -6,10 +6,6 @@ on:
       - automate-read-more
   pull_request:
 
-permissions:
-  contents: read
-  pull-requests: read
-
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
@@ -17,6 +13,8 @@ concurrency:
 jobs:
   generate-read-more:
     runs-on: "ubuntu-latest"
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,11 +25,6 @@ jobs:
         with:
           node-version: 16.13.x
           cache: npm
-      - name: Install
-        run: npm install
-      - name: Gather files changed
-        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b
-        with:
-          fileOutput: 'json'
-      - name: Show files changed
-        run: cat $HOME/files.json
+      - run: npm install
+      - run: npm run style
+      - uses: stefanzweifel/git-auto-commit-action@v5
