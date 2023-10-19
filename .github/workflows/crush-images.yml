@@ -4,11 +4,11 @@ on:
   pull_request:
     branches:
       - automate-read-more
-    # paths:
-    #   - "**.jpg"
-    #   - "**.jpeg"
-    #   - "**.png"
-    #   - "**.gif"
+    paths:
+      - "**.jpg"
+      - "**.jpeg"
+      - "**.png"
+      - "**.gif"
   # push:
   #     branches:
   #       - automate-read-more
