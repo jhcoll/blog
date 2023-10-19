@@ -12,7 +12,6 @@ on:
   # push:
   #     branches:
   #       - automate-read-more
-
 jobs:
   compress-images:
     runs-on: ubuntu-latest
