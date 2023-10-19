@@ -1,17 +1,18 @@
 name: Crush images
+
 on:
   pull_request:
     branches:
       - automate-read-more
     paths:
-      - '**.jpg'
-      - '**.jpeg'
-      - '**.png'
-      - '**.gif'
+      - "**.jpg"
+      - "**.jpeg"
+      - "**.png"
+      - "**.gif"
   # push:
   #     branches:
   #       - automate-read-more
-      
+
 jobs:
   crush:
     runs-on: ubuntu-latest
