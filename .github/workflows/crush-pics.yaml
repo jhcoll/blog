@@ -11,6 +11,7 @@ on:
       - '**.jpeg'
       - '**.png'
       - '**.gif'
+      
 jobs:
   crush:
     runs-on: ubuntu-latest
