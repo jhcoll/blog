@@ -1,8 +1,5 @@
 name: Crush images
 on:
-  # push:
-  #     branches:
-  #       - automate-read-more
   pull_request:
     branches:
       - automate-read-more
@@ -11,6 +8,9 @@ on:
       - '**.jpeg'
       - '**.png'
       - '**.gif'
+  # push:
+  #     branches:
+  #       - automate-read-more
       
 jobs:
   crush:
