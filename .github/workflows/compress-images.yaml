@@ -24,6 +24,8 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           compressOnly: true
-      - uses: mshick/add-pr-comment@v2
+      - name: Add comment to PR
+        if: steps.calibre.outputs.markdown != ''
+        uses: mshick/add-pr-comment@v2
         with:
           message: ${{ steps.calibre.outputs.markdown }}
