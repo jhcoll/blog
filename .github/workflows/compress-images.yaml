@@ -1,0 +1,29 @@
+name: Compress Images
+
+on:
+  pull_request:
+    branches:
+      - gh-pages
+    paths:
+      - "**.jpg"
+      - "**.jpeg"
+      - "**.png"
+      - "**.gif"
+  push:
+      branches:
+        - gh-pages
+
+jobs:
+  compress-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Compress Images
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          compressOnly: true
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: ${{ steps.calibre.outputs.markdown }}
