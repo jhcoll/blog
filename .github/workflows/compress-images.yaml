@@ -1,17 +1,8 @@
-name: Compress Images
+name: Compress Images Once a Month, Create Pull Request
 
 on:
-  pull_request:
-    branches:
-      - gh-pages
-    paths:
-      - "**.jpg"
-      - "**.jpeg"
-      - "**.png"
-      - "**.gif"
-  push:
-      branches:
-        - gh-pages
+  schedule:
+    - cron: '0 0 1 * *'
 
 jobs:
   compress-images:
