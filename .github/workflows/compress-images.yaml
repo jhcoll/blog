@@ -24,8 +24,11 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           compressOnly: true
-      - name: Add comment to PR
+      - name: Create New Pull Request
         if: steps.calibre.outputs.markdown != ''
-        uses: mshick/add-pr-comment@v2
+        uses: peter-evans/create-pull-request@v4
         with:
-          message: ${{ steps.calibre.outputs.markdown }}
+          title: Auto Compressed Images
+          branch-suffix: timestamp
+          commit-message: Auto Compressed Images
+          body: ${{ steps.calibre.outputs.markdown }}
