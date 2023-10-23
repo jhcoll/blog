@@ -5,6 +5,7 @@ const { markdownToTxt } = require("markdown-to-txt");
 
 const summarisePost = async (post) => {
   const OPENAI_API_KEY = process.env.npm_config_openai_api_key;
+  const file = fs.readFileSync(post, "utf8");
   // remove front-matter
   const body = file.split("---")[2];
   // convert from markdown to text
