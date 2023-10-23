@@ -49,8 +49,7 @@ const summarisePost = async (post) => {
 };
 
 (async () => {
-  console.log(process.cwd());
-  const paths = await glob("./_posts/**/2023-*.*").then((paths) => {
+  const paths = await glob("./_posts/**/*.*").then((paths) => {
     return paths;
   });
 

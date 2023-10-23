@@ -44,7 +44,7 @@ data.forEach((d, i) => {
       - ${filenameToUrl(sortedDistances[0].item.file)}
       - ${filenameToUrl(sortedDistances[1].item.file)}`;
   
-    fs.appendFileSync("./_data/related.yml", output + "\n");
+    fs.writeFileSync("./_data/related.yml", output + "\n");
   }
 
 });

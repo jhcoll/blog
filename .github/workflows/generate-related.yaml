@@ -3,7 +3,7 @@ name: Generate Read More related
 on:
   push:
     branches:
-      - automate-read-more
+      - gh-pages
   pull_request:
     branches:
       - gh-pages
@@ -22,4 +22,11 @@ jobs:
       - run: npm install
       - run: npm run compute-embeddings --OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
       - run: npm run generate-related
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Create New Pull Request
+        if: steps.calibre.outputs.markdown != ''
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: Auto Compressed Images
+          branch-suffix: timestamp
+          commit-message: Auto Compressed Images
+          body: ${{ steps.calibre.outputs.markdown }}
