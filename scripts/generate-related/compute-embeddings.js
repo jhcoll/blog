@@ -56,7 +56,7 @@ const summarisePost = async (post) => {
 
   for (const path of paths) {
     const file = path.split("/").pop();
-    const filename = `scripts/generate-related/data/${file}`;
+    const filename = `./scripts/generate-related/data/${file}`;
 
     if (!fs.existsSync(filename)) {
       await summarisePost(path).then((embedding) => {
