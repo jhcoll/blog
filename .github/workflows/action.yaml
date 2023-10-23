@@ -5,29 +5,21 @@ on:
     branches:
       - automate-read-more
   pull_request:
-
-concurrency:
-  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
-  cancel-in-progress: true
+    branches:
+      - gh-pages
 
 jobs:
   generate-read-more:
     runs-on: "ubuntu-latest"
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16.13.x
           cache: npm
       - run: npm install
-      - run: npm run style
-      - run: git status
-      - run: git add .
-      - run: git status
+      - run: npm run compute-embeddings --OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+      - run: npm run generate-related
       - uses: stefanzweifel/git-auto-commit-action@v5
