@@ -54,6 +54,10 @@ const summarisePost = async (post) => {
     return paths;
   });
 
+  if (!fs.existsSync("./scripts/generate-related/data")) {
+    fs.mkdirSync("./scripts/generate-related/data");
+  }
+
   for (const path of paths) {
     const file = path.split("/").pop();
     const filename = `./scripts/generate-related/data/${file}`;
