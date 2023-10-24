@@ -23,7 +23,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           title: Auto Generated Read More Links
-          branch-suffix: timestamp
+          branch: auto-generated-read-more-links
           commit-message: Auto Generated Read More Links
           base: gh-pages
           body: |
