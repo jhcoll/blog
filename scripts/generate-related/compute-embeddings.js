@@ -17,16 +17,13 @@ const { markdownToTxt } = require("markdown-to-txt");
     const filename = `${outputPath}/${file}`;
 
     if (!fs.existsSync(filename)) {
-      console.log("embedding", filename)
       await summarisePost(formatContent(path)).then((embedding) => {
         fs.writeFileSync(filename, JSON.stringify(embedding, null, 2));
       }).catch((err) => {
         console.log("failed to embed: ", filename);
         console.log(err);
       });
-    } else {
-      console.log("skipping: ", filename);
-    }
+    } 
   }
 })();
 
