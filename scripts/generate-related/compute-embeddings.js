@@ -49,7 +49,7 @@ const summarisePost = async (post) => {
 };
 
 (async () => {
-  const paths = await glob("./_posts/**/*.*").then((paths) => {
+  const paths = await glob("./_posts/**/{20[1][3-9]\,20[2][0-3]}-*.{md,markdown,html}").then((paths) => {
     return paths;
   });
 

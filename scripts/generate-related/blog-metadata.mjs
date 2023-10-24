@@ -4,7 +4,6 @@ let data = [];
 // read all files from the folder
 const folder = "./scripts/generate-related/data/";
 const files = fs.readdirSync(folder);
-const relatedFile = fs.readFileSync("./_data/related.yml");
 files.forEach((file) => {
   const content = fs.readFileSync(folder + file, "utf8");
   data.push({
@@ -39,12 +38,7 @@ data.forEach((d, i) => {
   }));
   const sortedDistances = distances.sort((a, b) => a.distance - b.distance);
 
-  if(!relatedFile.toString().includes(`${filenameToUrl(d.file)}:`)) {
-    const output = `${filenameToUrl(d.file)}:
-      - ${filenameToUrl(sortedDistances[0].item.file)}
-      - ${filenameToUrl(sortedDistances[1].item.file)}`;
-  
-    fs.writeFileSync("./_data/related.yml", output + "\n");
-  }
-
+  console.log(`${filenameToUrl(d.file)}:
+  - ${filenameToUrl(sortedDistances[0].item.file)}
+  - ${filenameToUrl(sortedDistances[1].item.file)}`);
 });
