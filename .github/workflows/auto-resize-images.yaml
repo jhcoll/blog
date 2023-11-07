@@ -15,7 +15,7 @@ jobs:
         id: resize-images
         uses: petems/image-resizer-gh-action@master
         with:
-          target: blog/ 
+          target: ./ 
           # dimensions: 90% # parameter to change size
           widthLimit: 1140 
           heightLimit: 1140 
