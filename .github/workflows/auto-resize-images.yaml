@@ -3,7 +3,7 @@ name: Resize all images
 on:
   workflow_dispatch:
     branches:
-      - auto-resize-images
+      - gh-pages
 
 jobs:
   generate-read-more:
