@@ -10,7 +10,9 @@ const fs = require("fs");
 
     for (const path of paths) {
         try{
+            const beforeStats = await fs.promises.stat(path);
             console.log('Resizing image: ', path);
+            console.log('Size before resize: size - ', beforeStats.size);
             const { data, info } = await sharp(path)
             .resize(1140, 1140, {fit: 'inside', withoutEnlargement: true})
             .toBuffer({ resolveWithObject: true });
@@ -19,8 +21,7 @@ const fs = require("fs");
 
             await fs.promises.writeFile(path, data); 
         } catch (err) {
-            console.log('failed to resize image: ', path);
-            throw err;
+            console.error('failed to resize image: ', path);
         }
     }
 })();
