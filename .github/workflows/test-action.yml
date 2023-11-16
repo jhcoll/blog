@@ -1,0 +1,26 @@
+name: Schedule Job using Carbon Aware API
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  schedule_job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Schedule job using Carbon Aware API 
+        uses: jhcoll/carbon-aware-schedule-action
+        with:
+          # Region to check carbon intensity for - can be any azure region - however if using github hosted runners will be one of the following - 'eastus, eastus2, westus2, centralus, southcentralus'
+          region: 'eastus'
+          # path to template job to be scheduled
+          template-paths: 'templates/template.yml' 
+          # Time to check until - In format YYYY-MM-DDThh:mm:ssZ
+          end-time: '2023-11-16T11:00:00Z' # Optional - defaults to +24hr
+          # Estimated job length in minutes
+          estimated-job-length: '10' # Optional - defaults to 10
+          # Output path for scheduled jobs
+          output-path: '.github/workflows/' # Optional - defaults to ".github/workflows/"
+      - name: get changes
+        run: |
+          git status
