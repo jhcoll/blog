@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Schedule job using Carbon Aware API 
-        uses: jhcoll/carbon-aware-schedule-action
+        uses: jhcoll/carbon-aware-schedule-action@main
         with:
           # Region to check carbon intensity for - can be any azure region - however if using github hosted runners will be one of the following - 'eastus, eastus2, westus2, centralus, southcentralus'
           region: 'eastus'
