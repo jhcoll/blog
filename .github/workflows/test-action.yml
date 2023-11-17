@@ -4,27 +4,22 @@ on:
   push:
     branches:
       - gh-pages
-  
-  workflow_dispatch:
 
 jobs:
-  schedule_job:
+  schedule-job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Schedule job using Carbon Aware API 
-        uses: jhcoll/carbon-aware-schedule-action@main
+      - uses: jhcoll/carbon-aware-schedule-action@main
         with:
-          # Region to check carbon intensity for - can be any azure region - however if using github hosted runners will be one of the following - 'eastus, eastus2, westus2, centralus, southcentralus'
-          region: 'eastus'
-          # path to template job to be scheduled
-          template-paths: 'templates/template.yml, templates/template2.yml' 
-          # Time to check until - In format YYYY-MM-DDThh:mm:ssZ
-        #   end-time: '2023-11-17T11:51:00Z' # Optional - defaults to +24hr
-          # Estimated job length in minutes
-          estimated-job-length: '10' # Optional - defaults to 10
-          # Output path for scheduled jobs
-          output-path: '.github/workflows/' # Optional - defaults to ".github/workflows/"
-      - name: get changes
+            region: 'eastus'
+            template-paths: 'templates/template.yml'
+      - name: Commit scheduled workflow
         run: |
-          git status
+           git config --global user.name 'jhcoll'
+           git config --global user.email 'jhcoll@users.noreply.github.com'
+           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/jhcoll/blog
+           git checkout "${GITHUB_REF:11}"
+           git add .github/workflows/template.yml
+           git commit -m "scheduled workflow"
+           git push
