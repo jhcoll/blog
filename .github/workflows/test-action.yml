@@ -16,7 +16,7 @@ jobs:
           # Region to check carbon intensity for - can be any azure region - however if using github hosted runners will be one of the following - 'eastus, eastus2, westus2, centralus, southcentralus'
           region: 'eastus'
           # path to template job to be scheduled
-          template-paths: 'templates/template.yml' 
+          template-paths: 'templates/template.yml, templates/template2.yml' 
           # Time to check until - In format YYYY-MM-DDThh:mm:ssZ
           end-time: '2023-11-17T11:51:00Z' # Optional - defaults to +24hr
           # Estimated job length in minutes
