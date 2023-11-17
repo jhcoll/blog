@@ -1,7 +1,9 @@
 name: Schedule Job using Carbon Aware API
 
 on: 
-  workflow_dispatch:
+  push:
+    branches:
+      - gh-pages
 
 jobs:
   schedule_job:
@@ -16,7 +18,7 @@ jobs:
           # path to template job to be scheduled
           template-paths: 'templates/template.yml' 
           # Time to check until - In format YYYY-MM-DDThh:mm:ssZ
-        #   end-time: '' # Optional - defaults to +24hr
+          end-time: '2023-11-17T11:51:00Z' # Optional - defaults to +24hr
           # Estimated job length in minutes
           estimated-job-length: '10' # Optional - defaults to 10
           # Output path for scheduled jobs
