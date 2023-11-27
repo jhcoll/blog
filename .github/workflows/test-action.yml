@@ -20,10 +20,10 @@ jobs:
             template-paths: 'templates/template.yml'
       - name: Commit scheduled workflow
         run: |
-          #  git config --global user.name 'Jack Collier'
-          #  git config --global user.email 'jhcoll@users.noreply.github.com'
-          #  git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/jhcoll/blog
-          #  git checkout "${GITHUB_REF:11}"
+           git config --global user.name 'Jack Collier'
+           git config --global user.email 'jhcoll@users.noreply.github.com'
+           git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/jhcoll/blog
+           git checkout "${GITHUB_REF:11}"
            git add .github/workflows/template.yml
            git commit -m "scheduled workflow"
            git push
